@@ -27,11 +27,11 @@ app.post('/', async (req, res) => {
     const name = req.body.pageURL;
     const exists = await getSinglePost(name);
     if (!exists.success) {
-        res.status(500).send(name.message);
+        res.status(500).json({message:name.message});
         return
     }
     if (exists.post) {
-        res.status(200).send("exists");
+        res.status(200).send({message:"exists"});
         return;
     }
     await processStreamer(name, res, req);
@@ -39,7 +39,7 @@ app.post('/', async (req, res) => {
 })
 connectDB(process.env.MONGODB_URL).then(() => {
     app.listen(port, () => {
-        console.log(`back end listening on port, mongo connected ${port}`)
+        console.log(`back end listening on port ${port}, mongo connected `)
     })
 })
 

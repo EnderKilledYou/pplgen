@@ -7,7 +7,7 @@ import {PostSchema} from "./postSchema.js";
 export async function processStreamer(name, res, req) {
     const {word1, word2} = await getwords(name);
     if (!word1 || !word2) {
-        res.send("no words");
+        res.send({message:"no words"});
         return
     }
     console.log(`Starting ${req.body.imageURL} ${name} words: ${word1} ${word2}`)
@@ -27,5 +27,6 @@ export async function processStreamer(name, res, req) {
 
         console.log(new_post)
     })
-    res.send('ok');
+    res.send({message:"ok"});
+
 }
