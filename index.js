@@ -19,9 +19,11 @@ app.post('/', async (req, res) => {
         return;
     }
     if (req.body.apiKey !== process.env.API_KEY) {
+        res.status(500).json({message:"bad api key"});
         return;
     }
     if (!(req.body.imageURL && req.body.pageURL)) {
+        res.status(500).json({message:"missing params"});
         return;
     }
     const name = req.body.pageURL;
