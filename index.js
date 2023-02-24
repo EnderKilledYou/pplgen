@@ -18,7 +18,7 @@ app.post('/', async (req, res) => {
     if (!req.body.apiKey) {
         return;
     }
-    if (!req.body.apiKey === process.env.API_KEY) {
+    if (req.body.apiKey !== process.env.API_KEY) {
         return;
     }
     if (!(req.body.imageURL && req.body.pageURL)) {
